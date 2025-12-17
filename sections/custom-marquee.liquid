@@ -1,0 +1,183 @@
+<section
+  id="marquee-{{ section.id }}"
+  class="cm-marquee"
+  style="
+    --bg: {{ section.settings.bg_color }};
+    --text: {{ section.settings.text_color }};
+    --font-size: {{ section.settings.text_size }}px;
+    --speed: {{ section.settings.speed }}s;
+  "
+>
+  <div class="cm-track direction-{{ section.settings.direction }}">
+    <div class="cm-content">
+      {% for i in (1..6) %}
+        {% for block in section.blocks %}
+          <span class="cm-item">
+            {{ block.settings.text }}
+          </span>
+          <span class="cm-separator">
+            {{ section.settings.separator }}
+          </span>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+/* =========================
+   MARQUEE BASE
+   ========================= */
+.cm-marquee {
+  background: var(--bg);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 12px 0;
+}
+
+/* TRACK */
+.cm-track {
+  display: flex;
+  width: 100%;
+}
+
+/* CONTENT */
+.cm-content {
+  display: inline-flex;
+  align-items: center;
+  animation: scroll-left var(--speed) linear infinite;
+}
+
+/* DIRECTION */
+.direction-right .cm-content {
+  animation-name: scroll-right;
+}
+
+/* TEXT */
+.cm-item {
+  color: var(--text);
+  font-size: var(--font-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0 10px;
+}
+
+.cm-separator {
+  color: var(--text);
+  opacity: 0.9;
+  padding: 0 10px;
+}
+
+/* ANIMATIONS */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+/* PAUSE ON HOVER */
+{% if section.settings.pause_on_hover %}
+.cm-marquee:hover .cm-content {
+  animation-play-state: paused;
+}
+{% endif %}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .cm-item {
+    font-size: calc(var(--font-size) - 2px);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ff3b2f"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size (px)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator symbol",
+      "default": "✶"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Scroll direction",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Marquee item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "CAPPUCCINO"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Marquee",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item", "settings": { "text": "MOCHA" } },
+        { "type": "item", "settings": { "text": "MACCHIATO" } },
+        { "type": "item", "settings": { "text": "COLD BREW" } },
+        { "type": "item", "settings": { "text": "ESPRESSO" } },
+        { "type": "item", "settings": { "text": "AMERICANO" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

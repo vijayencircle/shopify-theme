@@ -1,0 +1,428 @@
+{% assign s = section.settings %}
+
+<section
+  id="testimonials-{{ section.id }}"
+  class="testimonial-section"
+  style="
+    --bg-color: {{ s.bg_color }};
+    --heading-color: {{ s.heading_color }};
+    --subheading-color: {{ s.subheading_color }};
+    --text-color: {{ s.text_color }};
+    --author-color: {{ s.author_color }};
+    --arrow-bg: {{ s.arrow_bg }};
+    --arrow-color: {{ s.arrow_color }};
+    background-color: {{ s.bg_color }};
+    {% if s.bg_image != blank %}
+      background-image: url({{ s.bg_image | image_url: width: 2000 }});
+      background-size: cover;
+      background-position: center;
+      
+    {% endif %}
+  "
+>
+  <div class="page-width">
+
+    <!-- TOP LABEL -->
+    {% if s.top_label != blank %}
+      <div class="ts-top-label">{{ s.top_label }}</div>
+    {% endif %}
+
+    <!-- HEADING -->
+    <h2 class="ts-heading">{{ s.heading }}</h2>
+
+    <!-- SUBTEXT -->
+    {% if s.subtext != blank %}
+      <p class="ts-subtext">{{ s.subtext }}</p>
+    {% endif %}
+
+    <!-- SLIDER CONTAINER WITH ARROWS -->
+    <div class="ts-slider-container">
+      {% if s.show_arrows %}
+        <button class="ts-arrow prev">&#8592;</button>
+      {% endif %}
+
+      <!-- SLIDER -->
+      <div class="ts-slider">
+        {% for block in section.blocks %}
+          <div class="ts-slide" {{ block.shopify_attributes }}>
+            <p class="ts-text">{{ block.settings.text }}</p>
+            <div class="ts-author">
+              {{ block.settings.author }},
+              <span>{{ block.settings.location }}</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if s.show_arrows %}
+        <button class="ts-arrow next">&#8594;</button>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.testimonial-section {
+  position: relative;
+  padding: 30px 20px;
+  text-align: center;
+
+  /* FULL BLEED FIX */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  box-sizing: border-box;
+}
+
+
+.ts-top-label {
+  color: #ff3b30;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+
+#shopify-section-template--26426659996016__testimonials_slider_bpTkFq {
+  overflow: hidden;
+}
+
+
+
+.ts-heading {
+  font-size: {{ s.heading_size }}px;
+  color: var(--heading-color);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.ts-subtext {
+  font-size: {{ s.subtext_size }}px;
+  color: var(--subheading-color);
+  max-width: 640px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+/* SLIDER CONTAINER */
+.ts-slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+/* SLIDER */
+.ts-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 820px;
+}
+
+.ts-slide {
+  display: none;
+  width: 100%;
+}
+
+.ts-slide.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.ts-text {
+  font-size: {{ s.text_size }}px;
+  color: var(--text-color);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  font-style: italic;
+  /* quotes: "“" "”" "‘" "’"; */
+}
+
+/* .shopify-section{
+  overflow: hidden;
+} */
+/* #testimonials-template--26426659996016__testimonials_slider_bpTkFq{
+  overflow: hidden;
+
+} */
+
+.ts-text::before {
+  content: open-quote;
+}
+
+.ts-text::after {
+  content: close-quote;
+}
+
+.ts-author {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--author-color);
+}
+
+.ts-author span {
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* ARROWS - Desktop positioning */
+.ts-arrow {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  background: var(--arrow-bg);
+  color: var(--arrow-color);
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.ts-arrow:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.ts-arrow:active {
+  transform: scale(0.95);
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .testimonial-section {
+    padding: 50px 15px;
+  }
+
+  .ts-heading {
+    font-size: calc({{ s.heading_size }}px * 0.7);
+    margin-bottom: 8px;
+  }
+
+  .ts-subtext {
+    font-size: calc({{ s.subtext_size }}px * 0.9);
+    margin: 0 auto 30px;
+    padding: 0 10px;
+  }
+
+  .ts-slider-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* On mobile, show arrows below the slider */
+  .ts-slider-container {
+    position: relative;
+    padding-bottom: 60px;
+  }
+
+  .ts-arrow {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+  }
+
+  .ts-arrow.prev {
+    left: calc(50% - 50px);
+  }
+
+  .ts-arrow.next {
+    right: calc(50% - 50px);
+  }
+
+  .ts-slider {
+    order: -1; /* Make slider appear first */
+  }
+
+  .ts-text {
+    font-size: calc({{ s.text_size }}px * 0.9);
+    line-height: 1.6;
+    padding: 0 10px;
+  }
+
+  .ts-author {
+    font-size: 13px;
+  }
+}
+
+/* Tablet responsiveness */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .ts-slider-container {
+    gap: 15px;
+    padding: 0 20px;
+  }
+  
+  .ts-slider {
+    max-width: 700px;
+  }
+  
+  .ts-text {
+    font-size: calc({{ s.text_size }}px * 0.95);
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .ts-heading {
+    font-size: calc({{ s.heading_size }}px * 0.6);
+    font-weight:900;
+  }
+  
+  .ts-text {s
+    font-size: calc({{ s.text_size }}px * 0.85);
+    padding: 0 5px;
+  }
+  
+  .ts-arrow {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 16px;
+  }
+  
+  .ts-arrow.prev {
+    left: calc(50% - 60px);
+  }
+  
+  .ts-arrow.next {
+    right: calc(50% - 60px);
+  }
+}
+</style>
+
+<script>
+(() => {
+  const section = document.querySelector('#testimonials-{{ section.id }}');
+  if (!section) return;
+
+  const slides = section.querySelectorAll('.ts-slide');
+  const prev = section.querySelector('.prev');
+  const next = section.querySelector('.next');
+  let index = 0;
+
+  const showSlide = i => {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+  };
+
+  showSlide(index);
+
+  if (prev && next) {
+    prev.onclick = () => {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    };
+
+    next.onclick = () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    };
+  }
+
+  // Add keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!section.contains(document.activeElement)) return;
+    
+    if (e.key === 'ArrowLeft' && prev) {
+      prev.click();
+    } else if (e.key === 'ArrowRight' && next) {
+      next.click();
+    }
+  });
+
+  // Auto-rotate slides (optional)
+  // Uncomment if you want automatic sliding
+  /*
+  let slideInterval = setInterval(() => {
+    if (next) next.click();
+  }, 5000);
+
+  section.addEventListener('mouseenter', () => clearInterval(slideInterval));
+  section.addEventListener('mouseleave', () => {
+    slideInterval = setInterval(() => {
+      if (next) next.click();
+    }, 5000);
+  });
+  */
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials Slider",
+  "settings": [
+    { "type": "text", "id": "top_label", "label": "Top label", "default": "Testimonials" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Loved by Coffee Lovers Like You" },
+    { "type": "textarea", "id": "subtext", "label": "Sub heading text", "default": "Earn points on every purchase and redeem rewards made just for you." },
+
+    { "type": "color", "id": "bg_color", "label": "Background color", "default": "#fffaf3" },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image (optional)" },
+
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#000000" },
+    { "type": "color", "id": "subheading_color", "label": "Sub heading color", "default": "#777777" },
+    { "type": "color", "id": "text_color", "label": "Testimonial text color", "default": "#ff3b30" },
+    { "type": "color", "id": "author_color", "label": "Author color", "default": "#000000" },
+
+    { "type": "range", "id": "heading_size", "min": 24, "max": 56, "step": 2, "label": "Heading size", "default": 36 },
+    { "type": "range", "id": "subtext_size", "min": 12, "max": 20, "step": 1, "label": "Subtext size", "default": 14 },
+    { "type": "range", "id": "text_size", "min": 16, "max": 28, "step": 1, "label": "Testimonial text size", "default": 18 },
+
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
+    { "type": "color", "id": "arrow_bg", "label": "Arrow background", "default": "#ff3b30" },
+    { "type": "color", "id": "arrow_color", "label": "Arrow icon color", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Testimonial text" },
+        { "type": "text", "id": "author", "label": "Author name" },
+        { "type": "text", "id": "location", "label": "Author location" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Slider",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "text": "Absolutely love the cold brew! Smooth, strong, and never bitter.",
+            "author": "Aisha R.",
+            "location": "Kuala Lumpur"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

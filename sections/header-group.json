@@ -1,0 +1,78 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "custom_announcement_bar_mXeDbB": {
+      "type": "custom-announcement-bar",
+      "name": "Custom Announcement Bar",
+      "settings": {
+        "enable_bar": true,
+        "show_home_only": false,
+        "announcement_text": "SPECIAL SALE: BLACK COFFEE",
+        "link_text": "SHOP NOW",
+        "link_url": "",
+        "phone_text": "+91 8140100218",
+        "text_alignment": "left",
+        "phone_alignment": "right",
+        "bg_color": "#fffaf0",
+        "text_color": "#000000",
+        "link_color": "#ff0000"
+      }
+    },
+    "custom_header_DUVDB9": {
+      "type": "custom-header",
+      "name": "Custom Header",
+      "settings": {
+        "bg_color": "#ff0000",
+        "text_color": "#ffffff",
+        "text_size": 13,
+        "logo": "shopify://shop_images/Screenshot_2025-12-15_174313-removebg-preview.png",
+        "logo_height": 80,
+        "logo_alignment": "center",
+        "left_menu": "lending-page-menu",
+        "right_text_1": "Find a Store",
+        "right_link_1": "",
+        "right_text_2": "International Franchise",
+        "right_link_2": "",
+        "button_text": "BUY 1 FREE 1",
+        "button_link": "",
+        "button_bg": "#1f5cff",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "header": {
+      "type": "header",
+      "disabled": true,
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "custom_announcement_bar_mXeDbB",
+    "custom_header_DUVDB9",
+    "header"
+  ]
+}

@@ -1,0 +1,1262 @@
+<section class="loyalty-ui" style="
+  --bg: {{ section.settings.bg_color }};
+  --heading: {{ section.settings.heading_color }};
+  --text: {{ section.settings.text_color }};
+  --accent: {{ section.settings.accent_color }};
+  --btn-bg: {{ section.settings.button_bg }};
+  --btn-hover: {{ section.settings.button_hover_bg }};
+  --btn-text: {{ section.settings.button_text_color }};
+  --btn-hover-text: {{ section.settings.button_hover_text_color }};
+  --font-family: {{ section.settings.font_family }};
+  --title-size: {{ section.settings.title_size }}px;
+  --desc-size: {{ section.settings.desc_size }}px;
+  --feature-size: {{ section.settings.feature_size }}px;
+  --button-size: {{ section.settings.button_size }}px;
+  --benefit-title-size: {{ section.settings.benefit_title_size }}px;
+  --benefit-text-size: {{ section.settings.benefit_text_size }}px;
+  --section-padding-top: {{ section.settings.section_padding_top }}px;
+  --section-padding-bottom: {{ section.settings.section_padding_bottom }}px;
+  --section-padding-sides: {{ section.settings.section_padding_sides }}px;
+  --button-padding-vertical: {{ section.settings.button_padding_vertical }}px;
+  --button-padding-horizontal: {{ section.settings.button_padding_horizontal }}px;
+  --button-radius: {{ section.settings.button_radius }}px;
+  --icon-bg: {{ section.settings.icon_bg_color }};
+  --icon-color: {{ section.settings.icon_color }};
+  --benefit-icon-color: {{ section.settings.benefit_icon_color }};
+  --benefit-title-color: {{ section.settings.benefit_title_color }};
+  --benefit-text-color: {{ section.settings.benefit_text_color }};
+  --benefit-icon-bg: {{ section.settings.benefit_icon_bg }};
+  --benefit-border-color: {{ section.settings.benefit_border_color }};
+">
+  <div class="page-width loyalty-top">
+
+    <!-- LEFT -->
+    <div class="loyalty-left">
+      <span class="loyalty-label">{{ section.settings.kicker }}</span>
+
+      <h2 class="loyalty-title">{{ section.settings.heading }}</h2>
+
+      <p class="loyalty-desc">{{ section.settings.description }}</p>
+
+      <!-- Dynamic Features Section -->
+      <div class="loyalty-features">
+        {% for block in section.blocks %}
+          {% if block.type == 'feature' %}
+            <div class="feature">
+              <div class="feature-icon">
+                {% if block.settings.feature_icon != blank %}
+                  <img 
+                    src="{{ block.settings.feature_icon | img_url: '100x100' }}" 
+                    alt="{{ block.settings.feature_text | escape }}"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                  >
+                {% else %}
+                  <span class="feature-fallback-icon">{{ block.settings.feature_fallback_icon }}</span>
+                {% endif %}
+              </div>
+              <span>{{ block.settings.feature_text }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <a href="{{ section.settings.button_link }}" class="loyalty-btn">
+        {{ section.settings.button_text }} →
+      </a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="loyalty-right">
+      <div class="images-container">
+        <!-- Main Large Image -->
+        <div class="main-image">
+          {% if section.settings.main_image %}
+            <img 
+              src="{{ section.settings.main_image | img_url: '800x' }}" 
+              alt="{{ section.settings.main_image_alt | escape }}"
+              loading="lazy"
+              class="main-img"
+            >
+          {% else %}
+            <div class="placeholder-image main-placeholder"></div>
+          {% endif %}
+        </div>
+        
+        <!-- Two Small Images -->
+        <div class="small-images">
+          {% if section.settings.image_top %}
+            <img 
+              src="{{ section.settings.image_top | img_url: '300x' }}" 
+              alt="{{ section.settings.image_top_alt | escape }}"
+              loading="lazy"
+              class="small-img top-img"
+            >
+          {% else %}
+            <div class="placeholder-image small-placeholder"></div>
+          {% endif %}
+          
+          {% if section.settings.image_bottom %}
+            <img 
+              src="{{ section.settings.image_bottom | img_url: '300x' }}" 
+              alt="{{ section.settings.image_bottom_alt | escape }}"
+              loading="lazy"
+              class="small-img bottom-img"
+            >
+          {% else %}
+            <div class="placeholder-image small-placeholder"></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM - Dynamic Benefits Section -->
+  <div class="page-width loyalty-bottom">
+    <div class="benefits-container">
+      {% for block in section.blocks %}
+        {% if block.type == 'benefit' %}
+          <div class="benefit-card-compact">
+            <div class="benefit-icon-compact">
+              {% if block.settings.benefit_icon != blank %}
+                <img 
+                  src="{{ block.settings.benefit_icon | img_url: '40x40' }}" 
+                  alt="{{ block.settings.benefit_title | escape }}"
+                  loading="lazy"
+                  width="24"
+                  height="24"
+                  class="benefit-icon-img"
+                >
+              {% else %}
+                <span class="benefit-icon-symbol">{{ block.settings.benefit_fallback_icon }}</span>
+              {% endif %}
+            </div>
+
+            <div class="benefit-content-compact">
+              <h4 class="benefit-title-compact">{{ block.settings.benefit_title }}</h4>
+              <p class="benefit-desc-compact">{{ block.settings.benefit_text }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .loyalty-ui {
+    background: var(--bg);
+    padding: var(--section-padding-top) var(--section-padding-sides) var(--section-padding-bottom);
+    font-family: var(--font-family);
+  }
+
+  .page-width {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* TOP GRID - Desktop stays exactly as you have it */
+  .loyalty-top {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  /* LEFT */
+  .loyalty-label {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .loyalty-title {
+    font-size: var(--title-size);
+    font-weight: 800;
+    color: var(--heading);
+    margin: 12px 0;
+    line-height: 1.2;
+  }
+
+  .loyalty-desc {
+    color: var(--text);
+    max-width: 520px;
+    line-height: 1.6;
+    font-size: var(--desc-size);
+    margin-bottom: 20px;
+  }
+
+  /* FEATURES - Dynamic grid that adjusts based on item count */
+  .loyalty-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px 26px;
+    margin: 28px 0;
+  }
+
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: var(--feature-size);
+  }
+
+  .feature-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background: var(--icon-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .feature-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .feature-fallback-icon {
+    color: var(--icon-color);
+    font-size: 16px;
+  }
+
+  /* BUTTON */
+  .loyalty-btn {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+    border-radius: var(--button-radius);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: var(--button-size);
+    border: none;
+    cursor: pointer;
+  }
+
+  .loyalty-btn:hover {
+    background: var(--btn-hover);
+    color: var(--btn-hover-text);
+    transform: translateY(-2px);
+  }
+
+  /* RIGHT IMAGES - Desktop stays exactly as you have it */
+  .loyalty-right {
+    position: relative;
+  }
+
+  .images-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+  }
+
+  .main-image {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 420px;
+    height: 615px;
+    border-radius: 214px 214px 0 0;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  .main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .small-images {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .small-img {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid var(--bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  .top-img {
+    top: 15px;
+    right: -106px;
+    z-index: 3;
+  }
+
+  .bottom-img {
+    bottom: 4px;
+    left: -26px;
+    z-index: 2;
+  }
+
+  .placeholder-image {
+    background: linear-gradient(135deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 400% 400%;
+    animation: shimmer 2s infinite;
+  }
+
+  .main-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .small-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* BOTTOM ROW - COMPACT LAYOUT - Dynamic grid */
+  .loyalty-bottom {
+    margin-top: 50px;
+    padding: 20px 0;
+  }
+
+  .benefits-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .benefit-card-compact {
+    text-align: center;
+    margin: 0px;
+    border-radius: 12px;
+    display: flex;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .benefit-icon-compact {
+    width: 50px;
+    height: 50px;
+    background: var(--benefit-icon-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dotted var(--benefit-title-color);
+    flex-shrink: 0;
+  }
+
+  .benefit-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .benefit-icon-symbol {
+    color: var(--benefit-icon-color);
+    font-size: 24px;
+    line-height: 1;
+    display: block;
+  }
+
+  .benefit-content-compact {
+    text-align: left;
+    flex: 1;
+  }
+
+  .benefit-title-compact {
+    color: var(--benefit-title-color);
+    font-weight: 800;
+    font-size: var(--benefit-title-size);
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .benefit-desc-compact {
+    color: var(--benefit-text-color);
+    font-weight: 600;
+    font-size: var(--benefit-text-size);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* ============================================
+     MOBILE RESPONSIVE STYLES ONLY
+     Desktop layout remains unchanged
+     ============================================ */
+
+  @media (max-width: 991px) {
+    /* Tablet: Stack top section vertically */
+    .loyalty-top {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 40px;
+    }
+    
+    .loyalty-left {
+      order: 2;
+    }
+    
+    .loyalty-right {
+      order: 1;
+      margin-top: 0;
+      height: 450px;
+    }
+    
+    .loyalty-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Tablet image adjustments - KEEP ALL IMAGES */
+    .images-container {
+      height: 450px;
+      margin: 0 auto;
+      max-width: 700px;
+      position: relative;
+    }
+    
+    .main-image {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 470px;
+      margin: 0;
+      right: auto;
+    }
+    
+    /* Adjust small images position for tablet */
+    .small-img {
+      width: 140px;
+      height: 140px;
+      border: 5px solid var(--bg);
+    }
+    
+    .top-img {
+      top: 20px;
+      right: 20px;
+      left: auto;
+    }
+    
+    .bottom-img {
+      bottom: 20px;
+      left: 20px;
+      right: auto;
+    }
+    
+    /* Tablet benefits - 2 columns */
+    .benefits-container {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .benefit-card-compact {
+      flex-direction: column;
+      text-align: center;
+      padding: 15px;
+      gap: 10px;
+    }
+    
+    .benefit-content-compact {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Mobile padding adjustments */
+    .loyalty-ui {
+      padding: calc(var(--section-padding-top) * 0.7) 15px calc(var(--section-padding-bottom) * 0.7);
+    }
+    
+    .page-width {
+      padding: 0 15px;
+    }
+    
+    /* Mobile typography scaling */
+    .loyalty-title {
+      font-size: clamp(28px, 8vw, var(--title-size));
+      line-height: 1.15;
+    }
+    
+    .loyalty-desc {
+      font-size: clamp(14px, 3vw, var(--desc-size));
+      text-align: start;
+
+    }
+    
+    .loyalty-label {
+      font-size: clamp(11px, 2.5vw, 13px);
+      text-align: start;
+    }
+    
+    /* Mobile features - single column */
+    .loyalty-features {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      justify-items: center;
+      max-width: 400px;
+      margin: 25px auto;
+    }
+    
+    .feature {
+      width: 100%;
+      max-width: 300px;
+      text-align: left;
+      justify-content: flex-start;
+    }
+    
+    /* Mobile images - KEEP ALL IMAGES */
+    .loyalty-right {
+      height: 400px;
+    }
+    
+    .images-container {
+      height: 400px;
+    }
+    
+    .main-image {
+      width: 280px;
+      height: 410px;
+    }
+    
+    .small-img {
+      width: 120px;
+      height: 120px;
+      border: 4px solid var(--bg);
+    }
+    
+    .top-img {
+      top: 15px;
+      right: 10px;
+    }
+    
+    .bottom-img {
+      bottom: 15px;
+      left: 10px;
+    }
+    
+    /* Mobile button */
+    .loyalty-btn {
+      width: 100%;
+      max-width: 300px;
+      font-size: clamp(14px, 3vw, var(--button-size));
+      padding: clamp(10px, 2.5vw, var(--button-padding-vertical)) clamp(15px, 4vw, var(--button-padding-horizontal));
+      display: block;
+      margin: 20px auto 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    /* Small mobile adjustments */
+    .loyalty-bottom {
+      margin-top: 40px;
+    }
+    
+    /* Benefits - single column on mobile */
+    .benefits-container {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      gap: 15px;
+    }
+    
+    .benefit-card-compact {
+      flex-direction: row;
+      text-align: left;
+      align-items: center;
+      padding: 12px 15px;
+      gap: 15px;
+    }
+    
+    .benefit-icon-compact {
+      width: 45px;
+      height: 45px;
+      min-width: 45px;
+    }
+    
+    .benefit-icon-img {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .benefit-icon-symbol {
+      font-size: clamp(16px, 4vw, 20px);
+    }
+    
+    .benefit-content-compact {
+      text-align: left;
+    }
+    
+    .benefit-title-compact {
+      font-size: clamp(12px, 3vw, var(--benefit-title-size));
+      margin-bottom: 3px;
+    }
+    
+    .benefit-desc-compact {
+      font-size: clamp(11px, 2.5vw, var(--benefit-text-size));
+    }
+    
+    .benefit-content-compact {
+      flex: 1;
+    }
+    
+    /* Smaller images for very small screens */
+    .loyalty-right {
+      height: 350px;
+    }
+    
+    .images-container {
+      height: 350px;
+    }
+    
+    .main-image {
+      width: 240px;
+      height: 350px;
+    }
+    
+    .small-img {
+      width: 100px;
+      height: 100px;
+      border: 3px solid var(--bg);
+    }
+    
+    .top-img {
+      top: 15px;
+      right: 26px;
+    }
+    
+    .bottom-img {
+      bottom: 10px;
+      left: 5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Extra small mobile */
+    .loyalty-ui {
+      padding: calc(var(--section-padding-top) * 0.6) 12px calc(var(--section-padding-bottom) * 0.6);
+    }
+    
+    .page-width {
+      padding: 0 12px;
+    }
+    
+    .loyalty-title {
+      font-size: clamp(24px, 7vw, 28px);
+      text-align: start;
+      font-weight: 900;
+    }
+    
+    .loyalty-desc {
+      font-size: clamp(13px, 2.8vw, 14px);
+      text-align: start;
+
+    }
+    
+    .feature {
+      font-size: clamp(13px, 3vw, var(--feature-size));
+      gap: 10px;
+    }
+    
+    .feature-icon {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+    }
+    
+    .feature-icon img {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .feature-fallback-icon {
+      font-size: 14px;
+    }
+    
+    /* Mobile images - adjust further for small screens */
+    .loyalty-right {
+      height: 300px;
+    }
+    
+    .images-container {
+      height: 300px;
+    }
+    
+    .main-image {
+      width: 200px;
+      height: 290px;
+    }
+    
+    .small-img {
+      width: 80px;
+      height: 80px;
+      border: 3px solid var(--bg);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    }
+    
+    .top-img {
+      top: 15px;
+      right: 26px;
+    }
+    
+    .bottom-img {
+      bottom: 5px;
+      left: 5px;
+    }
+    
+    .benefit-card-compact {
+      padding: 10px 12px;
+      gap: 12px;
+    }
+    
+    .benefit-icon-compact {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+    }
+    
+    .benefit-icon-img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    /* Smallest mobile screens */
+    .loyalty-title {
+      font-size: 22px;
+    }
+    
+    .loyalty-desc {
+      font-size: 13px;
+    }
+    
+    .feature {
+      max-width: 100%;
+    }
+    
+    /* Smallest screen images */
+    .loyalty-right {
+      height: 280px;
+    }
+    
+    .images-container {
+      height: 280px;
+    }
+    
+    .main-image {
+      width: 180px;
+      height: 260px;
+    }
+    
+    .small-img {
+      width: 70px;
+      height: 70px;
+      border: 2px solid var(--bg);
+    }
+    
+    .top-img {
+      top: 5px;
+      right: 5px;
+    }
+    
+    .bottom-img {
+      bottom: 5px;
+      left: 5px;
+    }
+    
+    .benefit-card-compact {
+      padding: 8px 10px;
+      gap: 10px;
+    }
+    
+    .benefit-icon-compact {
+      width: 35px;
+      height: 35px;
+      min-width: 35px;
+    }
+    
+    .benefit-icon-img {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .benefit-icon-symbol {
+      font-size: 14px;
+    }
+  }
+
+  /* Desktop hover effects only */
+  @media (hover: hover) and (pointer: fine) {
+    .benefit-card-compact:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Loyalty Program UI",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 20,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 20,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_padding_sides",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Sides",
+      "default": 20
+    },
+    {
+      "type": "font_picker",
+      "id": "font_family",
+      "label": "Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Label)",
+      "default": "#c81d25"
+    },
+    {
+      "type": "color",
+      "id": "icon_bg_color",
+      "label": "Feature Icon Background",
+      "default": "#c81d25"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Feature Icon Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Top Label",
+      "default": "What We Offer?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loyalty Made Simple"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "With Juz Coffee's Rewards Program, you'll earn points on every order online or in-store. Redeem them for discounts, free drinks, and exclusive offers made just for you."
+    },
+    {
+      "type": "header",
+      "content": "Typography Sizes"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "feature_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature Text Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Join Now & Start Earning"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#ff3b2f"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button Hover Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Oval Image"
+    },
+    {
+      "type": "text",
+      "id": "main_image_alt",
+      "label": "Main Image Alt Text",
+      "default": "Juz Coffee products"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_top",
+      "label": "Top Circular Image"
+    },
+    {
+      "type": "text",
+      "id": "image_top_alt",
+      "label": "Top Image Alt Text",
+      "default": "Coffee beans"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bottom",
+      "label": "Bottom Circular Image"
+    },
+    {
+      "type": "text",
+      "id": "image_bottom_alt",
+      "label": "Bottom Image Alt Text",
+      "default": "Coffee cup"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Benefits"
+    },
+    {
+      "type": "color",
+      "id": "benefit_icon_bg",
+      "label": "Benefit Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "benefit_border_color",
+      "label": "Border Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "benefit_icon_color",
+      "label": "Benefit Icon Color",
+      "default": "#c81d25"
+    },
+    {
+      "type": "color",
+      "id": "benefit_title_color",
+      "label": "Benefit Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "benefit_text_color",
+      "label": "Benefit Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "benefit_title_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit Title Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "benefit_text_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit Text Size",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_icon",
+          "label": "Feature Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_fallback_icon",
+          "label": "Fallback Icon (Text/Emoji)",
+          "default": "✓",
+          "info": "Shown if no image is uploaded"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature Text",
+          "default": "Feature benefit text here"
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "benefit_icon",
+          "label": "Benefit Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "benefit_fallback_icon",
+          "label": "Fallback Icon (Text/Emoji)",
+          "default": "🚚",
+          "info": "Shown if no image is uploaded"
+        },
+        {
+          "type": "text",
+          "id": "benefit_title",
+          "label": "Benefit Title",
+          "default": "Benefit Title"
+        },
+        {
+          "type": "text",
+          "id": "benefit_text",
+          "label": "Benefit Description",
+          "default": "Benefit description text here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Loyalty Program UI",
+      "category": "Promotional",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "feature_fallback_icon": "✓",
+            "feature_text": "Get 1 Point per RM1 Spent"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_fallback_icon": "✓",
+            "feature_text": "Track Rewards in Your Account"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_fallback_icon": "✓",
+            "feature_text": "Redeem Free Coffee or Merch"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_fallback_icon": "✓",
+            "feature_text": "Access Exclusive Offers"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_fallback_icon": "🚚",
+            "benefit_title": "Fast Delivery",
+            "benefit_text": "Get your coffee next day (selected areas)"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_fallback_icon": "💬",
+            "benefit_title": "Live Support",
+            "benefit_text": "7 days a week, 8 AM – 11 PM"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_fallback_icon": "📦",
+            "benefit_title": "Nationwide Shipping",
+            "benefit_text": "Free for orders above RM100"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_fallback_icon": "🎁",
+            "benefit_title": "Weekly Coffee Rewards",
+            "benefit_text": "Join & unlock surprise gifts every week"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

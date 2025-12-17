@@ -1,0 +1,331 @@
+<header
+  id="custom-header-{{ section.id }}"
+  class="ch-header logo-{{ section.settings.logo_alignment }}"
+  style="
+    --bg: {{ section.settings.bg_color }};
+    --text: {{ section.settings.text_color }};
+    --btn-bg: {{ section.settings.button_bg }};
+    --btn-text: {{ section.settings.button_text_color }};
+    --text-size: {{ section.settings.text_size }}px;
+  "
+>
+  <div class="page-width ch-inner">
+
+    <!-- MOBILE MENU ICON -->
+    <button
+      class="ch-menu-toggle"
+      aria-label="Open menu"
+      onclick="toggleMobileMenu('{{ section.id }}')"
+    >
+      ☰
+    </button>
+
+    <!-- LEFT MENU (DESKTOP) -->
+    <nav class="ch-nav ch-left">
+      {% if section.settings.left_menu != blank %}
+        <ul>
+          {% for link in linklists[section.settings.left_menu].links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </nav>
+
+    <!-- LOGO -->
+    <div class="ch-logo">
+      <a href="{{ routes.root_url }}">
+        {% if section.settings.logo != blank %}
+          <img
+            src="{{ section.settings.logo | image_url: width: 300 }}"
+            alt="{{ shop.name }}"
+            loading="lazy"
+            style="max-height: {{ section.settings.logo_height }}px;"
+          >
+        {% else %}
+          <span class="logo-text">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="ch-right">
+      {% if section.settings.right_text_1 != blank %}
+        <a href="{{ section.settings.right_link_1 }}" class="ch-text-link">
+          {{ section.settings.right_text_1 }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.right_text_2 != blank %}
+        <a href="{{ section.settings.right_link_2 }}" class="ch-text-link">
+          {{ section.settings.right_text_2 }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="ch-btn">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="ch-mobile-menu" id="mobile-menu-{{ section.id }}">
+    {% if section.settings.left_menu != blank %}
+      <ul>
+        {% for link in linklists[section.settings.left_menu].links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</header>
+
+<style>
+/* ==========================
+   HEADER BASE
+   ========================== */
+.ch-header {
+  background: var(--bg);
+  color: var(--text);
+  padding: 12px 0;
+  position: relative;
+}
+
+.ch-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+/* LOGO */
+.ch-logo {
+  text-align: center;
+}
+
+.logo-left .ch-logo { text-align: left; }
+.logo-right .ch-logo { text-align: right; }
+
+/* LEFT MENU */
+.ch-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 26px;
+  padding: 0;
+  margin: 0;
+}
+
+.ch-nav a {
+  color: var(--text);
+  font-size: var(--text-size);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* RIGHT */
+.ch-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+.ch-text-link {
+  color: var(--text);
+  font-size: var(--text-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+}
+
+/* BUTTON */
+.ch-btn {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ==========================
+   MOBILE MENU
+   ========================== */
+.ch-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.ch-mobile-menu {
+  display: none;
+  background: var(--bg);
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+.ch-mobile-menu ul {
+  list-style: none;
+  padding: 16px;
+  margin: 0;
+}
+
+.ch-mobile-menu li {
+  margin-bottom: 14px;
+}
+
+.ch-mobile-menu a {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+}
+
+/* ==========================
+   MOBILE ONLY
+   ========================== */
+@media (max-width: 990px) {
+  .ch-inner {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .ch-nav,
+  .ch-text-link {
+    display: none;
+  }
+
+  .ch-menu-toggle {
+    display: block;
+  }
+}
+</style>
+
+<script>
+function toggleMobileMenu(id) {
+  const menu = document.getElementById('mobile-menu-' + id);
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ef3a2d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Menu & text size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo height (px)",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "default": 46
+    },
+    {
+      "type": "select",
+      "id": "logo_alignment",
+      "label": "Logo alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "link_list",
+      "id": "left_menu",
+      "label": "Left menu"
+    },
+    {
+      "type": "text",
+      "id": "right_text_1",
+      "label": "Right text 1",
+      "default": "Find a Store"
+    },
+    {
+      "type": "url",
+      "id": "right_link_1",
+      "label": "Right link 1"
+    },
+    {
+      "type": "text",
+      "id": "right_text_2",
+      "label": "Right text 2",
+      "default": "International Franchise"
+    },
+    {
+      "type": "url",
+      "id": "right_link_2",
+      "label": "Right link 2"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "BUY 1 FREE 1"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background color",
+      "default": "#1f5cff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}

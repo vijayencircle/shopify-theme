@@ -1,0 +1,409 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_hero_banner_Qb9HC6": {
+      "type": "custom-hero-banner",
+      "name": "Custom Hero Banner",
+      "settings": {
+        "bg_image": "shopify://shop_images/06070e8773fd4f98026e0179de2b9e4207b71212.png",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0.5,
+        "top_text": "🍵 Crafted With Love, Served With Passion",
+        "heading": "Just the Coffee You Need, Exactly When You Need It.",
+        "description": "Discover a place where every cup is a masterpiece, crafted with passion and precision. From the rich, bold flavors of our signature blends to the cozy ambiance that feels like home.",
+        "heading_color": "#ffffff",
+        "text_color": "#ffffff",
+        "button_text": "Order Here",
+        "button_link": "",
+        "button_bg": "#1f5cff",
+        "button_text_color": "#ffffff",
+        "button_hover_bg": "#000000",
+        "button_hover_text": "#ffffff",
+        "button2_text": "Earn Points with Every Sip",
+        "button2_link": "",
+        "secondary_button_border": "#ffffff"
+      }
+    },
+    "custom_marquee_MRKwVT": {
+      "type": "custom-marquee",
+      "blocks": {
+        "item_reBy4B": {
+          "type": "item",
+          "settings": {
+            "text": "CAPPUCCINO"
+          }
+        },
+        "item_YNa87C": {
+          "type": "item",
+          "settings": {
+            "text": "MOCHA"
+          }
+        },
+        "item_HeHr8F": {
+          "type": "item",
+          "settings": {
+            "text": "MACCHIATO"
+          }
+        },
+        "item_MCgUCd": {
+          "type": "item",
+          "settings": {
+            "text": "COLD BREW"
+          }
+        },
+        "item_mxBntD": {
+          "type": "item",
+          "settings": {
+            "text": "ESPRESSO"
+          }
+        },
+        "item_MHALqR": {
+          "type": "item",
+          "settings": {
+            "text": "AMERICANO"
+          }
+        },
+        "item_Q9bDRG": {
+          "type": "item",
+          "settings": {
+            "text": "CAPPUCCINO"
+          }
+        }
+      },
+      "block_order": [
+        "item_reBy4B",
+        "item_YNa87C",
+        "item_HeHr8F",
+        "item_MCgUCd",
+        "item_mxBntD",
+        "item_MHALqR",
+        "item_Q9bDRG"
+      ],
+      "name": "Custom Marquee",
+      "settings": {
+        "bg_color": "#ff3b2f",
+        "text_color": "#ffffff",
+        "text_size": 17,
+        "separator": "✶",
+        "speed": 20,
+        "direction": "left",
+        "pause_on_hover": true
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "custom_popular_products_33QkC3": {
+      "type": "custom-popular-products",
+      "blocks": {
+        "product_eb9J9m": {
+          "type": "product",
+          "settings": {
+            "product": "caramel-latte",
+            "badge_text": "10% OFF",
+            "show_description": true
+          }
+        },
+        "product_UWFN7x": {
+          "type": "product",
+          "settings": {
+            "product": "iced-americano",
+            "badge_text": "",
+            "show_description": true
+          }
+        },
+        "product_B9HJbp": {
+          "type": "product",
+          "settings": {
+            "product": "hazelnut-cappuccino",
+            "badge_text": "",
+            "show_description": true
+          }
+        },
+        "product_TFB9zB": {
+          "type": "product",
+          "settings": {
+            "product": "mocha-espresso",
+            "badge_text": "",
+            "show_description": true
+          }
+        },
+        "product_E946A4": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "badge_text": "10% OFF",
+            "show_description": true
+          }
+        }
+      },
+      "block_order": [
+        "product_eb9J9m",
+        "product_UWFN7x",
+        "product_B9HJbp",
+        "product_TFB9zB",
+        "product_E946A4"
+      ],
+      "name": "Popular Products",
+      "settings": {
+        "heading": "Popular Products",
+        "heading_color": "#000000",
+        "price_color": "#ff3b2f",
+        "button_text": "Buy Now",
+        "button_link": "",
+        "button_bg": "#ff3b2f",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "custom_loyalty_offer_8wJ3ET": {
+      "type": "custom-loyalty-offer",
+      "blocks": {
+        "benefit_pmxnrB": {
+          "type": "benefit",
+          "settings": {
+            "benefit_icon": "shopify://shop_images/mdi_rocket-launch-outline.png",
+            "benefit_fallback_icon": "",
+            "benefit_title": "Fast Delivery",
+            "benefit_text": "Get your coffee next day (selected areas)"
+          }
+        },
+        "benefit_aNfj33": {
+          "type": "benefit",
+          "settings": {
+            "benefit_icon": "shopify://shop_images/streamline_customer-support-1.png",
+            "benefit_fallback_icon": "",
+            "benefit_title": "Live Support",
+            "benefit_text": "7 days a week, 8 AM – 11 PM"
+          }
+        },
+        "benefit_GKR9M7": {
+          "type": "benefit",
+          "settings": {
+            "benefit_icon": "shopify://shop_images/la_shipping-fast.png",
+            "benefit_fallback_icon": "",
+            "benefit_title": "Nationwide Shipping",
+            "benefit_text": "Free for orders above RM100"
+          }
+        },
+        "benefit_7LCqzX": {
+          "type": "benefit",
+          "settings": {
+            "benefit_icon": "shopify://shop_images/tdesign_saving-pot.png",
+            "benefit_fallback_icon": "",
+            "benefit_title": "Weekly Coffee Rewards",
+            "benefit_text": "Join & unlock surprise gifts every week"
+          }
+        },
+        "feature_LkrY4W": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/streamline-ultimate_gift-box-1.png",
+            "feature_fallback_icon": "",
+            "feature_text": "Get 1 Point per RM1 Spent"
+          }
+        },
+        "feature_xEqC4J": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/emojione-monotone_mobile-phone.png",
+            "feature_fallback_icon": "",
+            "feature_text": "Track Rewards in Your Account"
+          }
+        },
+        "feature_RPRgNw": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/hugeicons_shopping-bag-02.png",
+            "feature_fallback_icon": "",
+            "feature_text": "Redeem Free Coffee or Merch"
+          }
+        },
+        "feature_KV6FpP": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/la_medal.png",
+            "feature_fallback_icon": "",
+            "feature_text": "Access Exclusive Offers"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_pmxnrB",
+        "benefit_aNfj33",
+        "benefit_GKR9M7",
+        "benefit_7LCqzX",
+        "feature_LkrY4W",
+        "feature_xEqC4J",
+        "feature_RPRgNw",
+        "feature_KV6FpP"
+      ],
+      "name": "Loyalty Offer Section",
+      "settings": {
+        "section_padding_top": 90,
+        "section_padding_bottom": 60,
+        "section_padding_sides": 20,
+        "font_family": "system_ui_n4",
+        "bg_color": "#ffffff",
+        "heading_color": "#000000",
+        "text_color": "#666666",
+        "accent_color": "#d62828",
+        "icon_bg_color": "#c81d25",
+        "icon_color": "#ffffff",
+        "kicker": "🍵 What We Offer?",
+        "heading": "Loyalty Made Simple",
+        "description": "With Juz Coffee’s Rewards Program, you’ll earn points on every order online or in-store. Redeem them for discounts, free drinks, and exclusive offers made just for you.",
+        "title_size": 40,
+        "desc_size": 16,
+        "feature_size": 14,
+        "button_text": "Join Now & Start Earning",
+        "button_link": "",
+        "button_bg": "#ff3b2f",
+        "button_text_color": "#ffffff",
+        "button_hover_bg": "#000000",
+        "button_hover_text_color": "#ffffff",
+        "button_size": 16,
+        "button_padding_vertical": 14,
+        "button_padding_horizontal": 28,
+        "button_radius": 10,
+        "main_image": "shopify://shop_images/c9b3fc975cb6feb54bf9077f517880bd2ec6104b.png",
+        "main_image_alt": "Juz Coffee products",
+        "image_top": "shopify://shop_images/81a91531d7c643d0da191fdc8a300df3e9869175.png",
+        "image_top_alt": "Coffee beans",
+        "image_bottom": "shopify://shop_images/a3f8bae38a7eae7cf14a3a55e059a6ef1aaf1f92.png",
+        "image_bottom_alt": "Coffee cup",
+        "benefit_icon_bg": "#ffffff",
+        "benefit_border_color": "#e0e0e0",
+        "benefit_icon_color": "#c81d25",
+        "benefit_title_color": "#8a0b20",
+        "benefit_text_color": "#000000",
+        "benefit_title_size": 15,
+        "benefit_text_size": 10
+      }
+    },
+    "testimonials_slider_bpTkFq": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_N863qa": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Absolutely love the cold brew! Smooth, strong, and never bitter. The loyalty points are a bonus! I've tried cold brews from other places",
+            "author": "Encircle",
+            "location": "Rajkot Gujarat"
+          }
+        },
+        "testimonial_j7bghw": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Earn points on every purchase in-store or online and redeem them for free drinks, exclusive deals, and loyalty perks made just for you.",
+            "author": "Vijay C",
+            "location": "Rajkot Gujarat"
+          }
+        },
+        "testimonial_pxPUJW": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Absolutely love the cold brew! Smooth, strong, and never bitter. The loyalty points are a bonus! I've tried cold brews from other places, but this one hits the spot every time. Plus, earning points for free coffee just keeps me coming back.",
+            "author": "Aisha R",
+            "location": "Kuala Lumpur"
+          }
+        },
+        "testimonial_hGnFcd": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Absolutely love the cold brew! Smooth, strong, and never bitter.",
+            "author": "Aisha R.",
+            "location": "Kuala Lumpur"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_N863qa",
+        "testimonial_j7bghw",
+        "testimonial_pxPUJW",
+        "testimonial_hGnFcd"
+      ],
+      "custom_css": [],
+      "name": "Testimonials Slider",
+      "settings": {
+        "top_label": "🍵 Testimonials",
+        "heading": "Loved by Coffee Lovers Like You",
+        "subtext": "Earn points on every purchase in-store or online and redeem them for free drinks, exclusive deals, and loyalty perks made just for you.",
+        "bg_color": "rgba(0,0,0,0)",
+        "bg_image": "shopify://shop_images/BG.png",
+        "heading_color": "#000000",
+        "subheading_color": "#777777",
+        "text_color": "#ff3b30",
+        "author_color": "#000000",
+        "heading_size": 42,
+        "subtext_size": 14,
+        "text_size": 18,
+        "show_arrows": true,
+        "arrow_bg": "#ff3b30",
+        "arrow_color": "#ffffff"
+      }
+    },
+    "mobile_app_promo_UAYnUn": {
+      "type": "mobile-app-promo",
+      "name": "Mobile App Promo (Mobile Only)",
+      "settings": {
+        "kicker": "🍵 Coffee At Your Fingertips",
+        "heading": "Download Our Mobile App",
+        "description": "Stay connected with Roast wherever you go. With our mobile app, you can browse the menu, place orders, schedule pickups, and enjoy exclusive rewards.",
+        "app_store_link": "shopify://products/leather-anchor",
+        "play_store_link": "shopify://products/antique-drawers",
+        "bg_image": "shopify://shop_images/Mask_group.png",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "accent_color": "#e31e24",
+        "accent_hover_color": "#c9181e",
+        "kicker_size": 14,
+        "heading_size": 30,
+        "text_size": 15,
+        "button_size": 16
+      }
+    }
+  },
+  "order": [
+    "custom_hero_banner_Qb9HC6",
+    "custom_marquee_MRKwVT",
+    "featured_collection",
+    "custom_popular_products_33QkC3",
+    "custom_loyalty_offer_8wJ3ET",
+    "testimonials_slider_bpTkFq",
+    "mobile_app_promo_UAYnUn"
+  ]
+}

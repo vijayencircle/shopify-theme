@@ -1,0 +1,296 @@
+{%- assign show_bar = true -%}
+
+{%- if section.settings.show_home_only and template.name != 'index' -%}
+  {%- assign show_bar = false -%}
+{%- endif -%}
+
+{%- if section.settings.enable_bar and show_bar -%}
+  <div
+    class="cab-wrapper align-{{ section.settings.text_alignment }} phone-align-{{ section.settings.phone_alignment }}"
+    id="cab-{{ section.id }}"
+    style="
+      --cab-bg: {{ section.settings.bg_color }};
+      --cab-text: {{ section.settings.text_color }};
+      --cab-link: {{ section.settings.link_color }};
+    ">
+    <div class="cab-inner page-width">
+
+      <!-- ANNOUNCEMENT TEXT -->
+      <div class="cab-text">
+        {{ section.settings.announcement_text }}
+
+        {% if section.settings.link_text != blank %}
+          <a href="{{ section.settings.link_url }}" class="cab-link">
+            {{ section.settings.link_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- PHONE -->
+      {% if section.settings.phone_text != blank %}
+        <div class="cab-phone">
+          <a href="tel:{{ section.settings.phone_text | remove: ' ' | remove: '-' }}" class="cab-phone-link">
+            📞 {{ section.settings.phone_text }}
+          </a>
+        </div>
+      {% endif %}
+
+
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+
+
+  /*
+   =============================== 
+   ANNOUNCEMENT BAR – BASE 
+   ===============================
+*/
+
+  .cab-wrapper {
+    background: var(--cab-bg);
+    color: var(--cab-text);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  .cab-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 42px;
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  /* TEXT */
+  .cab-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* LINK */
+  .cab-link {
+    color: var(--cab-link);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .cab-link:hover {
+    text-decoration: underline;
+  }
+
+  /* PHONE */
+  .cab-phone {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+
+  /*
+   =============================== 
+   TEXT ALIGNMENT 
+   ===============================
+*/
+
+  .align-left .cab-text {
+    text-align: left;
+  }
+
+  .align-center .cab-text {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .align-right .cab-text {
+    text-align: right;
+    margin-left: auto;
+  }
+
+
+  /*
+   =============================== 
+   PHONE ALIGNMENT 
+   ===============================
+*/
+
+  .phone-align-left .cab-phone {
+    margin-right: auto;
+  }
+
+  .phone-align-center .cab-phone {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .phone-align-right .cab-phone {
+    margin-left: auto;
+  }
+
+
+  .cab-phone-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .cab-phone-link:hover {
+    text-decoration: none;
+    color: rgb(68, 68, 68);
+    font-weight: 900;
+
+  }
+
+
+  /*
+   =============================== 
+   MOBILE RESPONSIVE 
+   ===============================
+*/
+
+
+  /*
+   =============================== 
+   MOBILE ONLY CHANGES 
+   ===============================
+*/@media (max-width: 768px) {
+    .cab-wrapper {
+      font-size: 13px;
+    }
+
+    .cab-inner {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      gap: 6px;
+      padding: 10px 12px;
+    }
+
+    /* TEXT: EXTRA BOLD */
+    .cab-text {
+      justify-content: center;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .cab-text,
+    .cab-link {
+      font-weight: 900;
+    }
+
+    /* HIDE PHONE ON MOBILE */
+    .cab-phone {
+      display: none;
+    }
+
+    /* RESET ALIGNMENTS */
+    .align-left .cab-text,
+    .align-center .cab-text,
+    .align-right .cab-text {
+      margin: 0;
+    }
+  }
+
+</style>
+
+{% schema %}
+  {
+    "name": "Custom Announcement Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_bar",
+        "label": "Enable announcement bar",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_home_only",
+        "label": "Show only on homepage",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement text",
+        "default": "SPECIAL SALE: BLACK COFFEE"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link text",
+        "default": "SHOP NOW"
+      }, {
+        "type": "url",
+        "id": "link_url",
+        "label": "Link URL"
+      }, {
+        "type": "text",
+        "id": "phone_text",
+        "label": "Phone number",
+        "default": "+91 000 000 0000"
+      }, {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Announcement text alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      }, {
+        "type": "select",
+        "id": "phone_alignment",
+        "label": "Phone alignment",
+        "default": "right",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      }, {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#fffaf0"
+      }, {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      }, {
+        "type": "color",
+        "id": "link_color",
+        "label": "Link color",
+        "default": "#ff0000"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Announcement Bar"
+      }
+    ]
+  }
+{% endschema %}

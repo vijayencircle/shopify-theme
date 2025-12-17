@@ -1,0 +1,435 @@
+<section
+  id="hero-{{ section.id }}"
+  class="hero-banner"
+  style="
+    --overlay-color: {{ section.settings.overlay_color }};
+    --overlay-opacity: {{ section.settings.overlay_opacity }};
+    --heading-color: {{ section.settings.heading_color }};
+    --text-color: {{ section.settings.text_color }};
+    --btn-bg: {{ section.settings.button_bg }};
+    --btn-text: {{ section.settings.button_text_color }};
+    --btn-hover-bg: {{ section.settings.button_hover_bg }};
+    --btn-hover-text: {{ section.settings.button_hover_text }};
+    --btn2-border: {{ section.settings.secondary_button_border }};
+  "
+>
+  <div class="hero-bg">
+    {% if section.settings.bg_image != blank %}
+      {% assign mobile_image = section.settings.bg_image_mobile | default: section.settings.bg_image %}
+      <img
+        class="hero-desktop-image"
+        src="{{ section.settings.bg_image | image_url: width: 2000 }}"
+        alt="{{ section.settings.bg_image.alt | escape }}"
+        loading="lazy"
+        width="2000"
+        height="{{ 2000 | divided_by: section.settings.bg_image.aspect_ratio | round }}"
+      >
+      <img
+        class="hero-mobile-image"
+        src="{{ mobile_image | image_url: width: 800 }}"
+        alt="{{ mobile_image.alt | escape }}"
+        loading="lazy"
+        width="800"
+        height="{{ 800 | divided_by: mobile_image.aspect_ratio | round }}"
+      >
+    {% endif %}
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="page-width hero-content">
+    {% if section.settings.top_text != blank %}
+      <p class="hero-kicker">
+        {{ section.settings.top_text }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h1 class="hero-heading">
+        {{ section.settings.heading }}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <p class="hero-desc">
+        {{ section.settings.description }}
+      </p>
+    {% endif %}
+
+    <div class="hero-buttons">
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="hero-btn primary">
+          {{ section.settings.button_text }} →
+        </a>
+      {% endif %}
+
+      {% if section.settings.button2_text != blank %}
+        <a href="{{ section.settings.button2_link }}" class="hero-btn secondary">
+          {{ section.settings.button2_text }} →
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+/* =========================
+   HERO BASE
+   ========================= */
+.hero-banner {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* BACKGROUND IMAGES - RESPONSIVE HANDLING */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Show/hide images based on screen size */
+.hero-mobile-image {
+  display: none;
+}
+
+/* OVERLAY */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-color);
+  opacity: var(--overlay-opacity);
+  z-index: 1;
+}
+
+/* CONTENT */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  text-align: center;
+  padding: 0 20px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* TEXT */
+.hero-kicker {
+  color: var(--text-color);
+  font-size: clamp(12px, 2.5vw, 14px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: clamp(12px, 2vw, 16px);
+}
+
+.hero-heading {
+  color: var(--heading-color);
+  font-size: clamp(28px, 6vw, 56px);
+  line-height: 1.15;
+  font-weight: 900;
+  margin-bottom: clamp(16px, 3vw, 20px);
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.hero-desc {
+  color: var(--text-color);
+  font-size: clamp(14px, 2vw, 16px);
+  max-width: 720px;
+  margin: 0 auto clamp(24px, 4vw, 32px);
+  line-height: 1.6;
+  padding: 0 10px;
+}
+
+/* BUTTONS */
+.hero-buttons {
+  display: flex;
+  gap: clamp(10px, 2vw, 14px);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  padding: clamp(10px, 2vw, 12px) clamp(18px, 3vw, 22px);
+  border-radius: 10px;
+  font-size: clamp(13px, 2vw, 14px);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  min-width: 140px;
+  text-align: center;
+}
+
+/* PRIMARY */
+.hero-btn.primary {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+}
+
+.hero-btn.primary:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+}
+
+/* SECONDARY */
+.hero-btn.secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid var(--btn2-border);
+}
+
+.hero-btn.secondary:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* =========================
+   MOBILE RESPONSIVE STYLES
+   ========================= */
+@media (max-width: 768px) {
+  .hero-banner {
+    min-height: 70vh;
+    align-items: flex-start;
+    padding-top: 60px;
+  }
+
+  /* Switch images for mobile */
+  .hero-desktop-image {
+    display: none;
+  }
+  
+  .hero-mobile-image {
+    display: block;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .hero-heading {
+    font-size: clamp(24px, 8vw, 32px);
+    line-height: 1.2;
+    margin-bottom: 15px;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    padding: 0 5px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 280px;
+    min-width: unset;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  /* Stack buttons vertically on very small screens */
+  @media (max-width: 480px) {
+    .hero-banner {
+      min-height: 65vh;
+      padding-top: 50px;
+    }
+    
+    .hero-heading {
+      font-size: 22px;
+    }
+    
+    .hero-desc {
+      font-size: 14px;
+    }
+    
+    .hero-btn {
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+  }
+
+  /* Tablet adjustments */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .hero-banner {
+      min-height: 75vh;
+      padding-top: 80px;
+    }
+    
+    .hero-heading {
+      font-size: 32px;
+    }
+    
+    .hero-buttons {
+      flex-direction: row;
+      max-width: 100%;
+    }
+    
+    .hero-btn {
+      width: auto;
+      min-width: 160px;
+    }
+  }
+}
+
+/* =========================
+   TABLET STYLES (769px - 1024px)
+   ========================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-banner {
+    min-height: 80vh;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    padding: 0 40px;
+  }
+  
+  .hero-heading {
+    font-size: 44px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background image (Mobile)",
+      "info": "Optional: Different image for mobile"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.5
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Top small text",
+      "default": "Crafted With Love, Served With Passion"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Just the Coffee You Need, Exactly When You Need It."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover a place where every cup is a masterpiece, crafted with passion and precision."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary button text",
+      "default": "Order Here"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Primary button background",
+      "default": "#1f5cff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Primary button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Primary button hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Primary button hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "button2_text",
+      "label": "Secondary button text",
+      "default": "Earn Points with Every Sip"
+    },
+    {
+      "type": "url",
+      "id": "button2_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_border",
+      "label": "Secondary button border color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero Banner"
+    }
+  ]
+}
+{% endschema %}
